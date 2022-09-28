@@ -25,6 +25,8 @@ cout<<"Good day "<< userName << "! Welcome to Team Uno's Machine Problem. This B
 cout<< "\nPlease input Budget for the month." << endl;
 cin >> totalBudget;
 
+
+
 //Daily Expensese
 
     cout << "\nDo you want to add categories to your Daily Expenses? (Y/N) ";
@@ -33,8 +35,8 @@ cin >> totalBudget;
     {
         cout<< "\nEnter number of Daily Expenses. ";
         cin >> dSize;
-        string* nameDaily = new string[dSize];
-        int* amountDaily = new int[dSize];
+        nameDaily = new string[dSize];
+        amountDaily = new int[dSize];
         cout<< endl;
 
         for (int i = 0; i<dSize; i++)
@@ -47,10 +49,11 @@ cin >> totalBudget;
    
     
     cout<<"You have "<< dSize<< " daily expenses, and these are:"<< endl;
-    for (int i = 0; i<dSize; i++)
+    }
+
+for (int i = 0; i<dSize; i++)
     {
         cout<< nameDaily[i]<<": "<< amountDaily[i]<< " Pesos"<<endl; 
-    }
     }
 /*
 //Weekly Expenses
