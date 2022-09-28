@@ -47,7 +47,15 @@ cin >> totalBudget;
             cin >> amountDaily [i];
         }
     }
+<<<<<<< HEAD
     else
+=======
+
+        for (int i = 0; i<dSize; i++)
+
+
+for (int i = 0; i<dSize; i++)
+>>>>>>> 82eb20a796a4472f3d4b9f6473a87f14b20f1dd0
     {
         cout<<"edi wow!";
     }
