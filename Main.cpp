@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 using namespace std;
 
 
@@ -16,7 +17,8 @@ int main()
 {
 
 
-//input! -> user details, budget, expense
+//-----------------------------------------------------------------------------input----------------------------------------------------------------------------
+//input -> user details, budget, expense
 cout<<"Before using the program, please enter your name: "<<endl;
 getline(cin, userName);
 
@@ -91,25 +93,36 @@ cin >> totalBudget;
 
 //Output Test
     //Daily
-    cout<<"You have "<< dSize<< " daily expenses, and these are:"<< endl;
+    cout<<"You have "<< dSize<< " daily expense/s, and these are:"<< endl;
     for (int i = 0; i<dSize; i++)
     {
         cout<< nameDaily[i]<<": "<< amountDaily[i]<< " Pesos"<<endl; 
     }
 
     //Weekly
-    cout<<"You have "<< wSize<< " weekly expenses, and these are:"<< endl;
+    cout<<"You have "<< wSize<< " weekly expense/s, and these are:"<< endl;
     for (int i = 0; i<wSize; i++)
     {
         cout<< nameWeekly[i]<<": "<< amountWeekly[i]<< " Pesos"<<endl; 
     }
 
      //Monthly
-    cout<<"You have "<< mSize<< " monthly expenses, and these are:"<< endl;
+    cout<<"You have "<< mSize<< " monthly expense/s, and these are:"<< endl;
     for (int i = 0; i<mSize; i++)
     {
         cout<< nameMonthly[i]<<": "<< amountMonthly[i]<< " Pesos"<<endl; 
     }
+
+
+
+//--------------------------------------------------------------------------Processing--------------------------------------------------------------------------
+//Processing -> Budget>Expense, create stacks
+
+
+
+//----------------------------------------------------------------------------output----------------------------------------------------------------------------
+//Output -> output stacks 
+
 
 return 0;
 }
