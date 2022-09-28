@@ -17,7 +17,7 @@ int main()
 
 //input! -> user details, budget, expense
 cout<<"Before using the program, please enter your name: "<<endl;
-cin >> userName;
+getline(cin, userName);
 
 cout<<"Good day "<< userName << "! Welcome to Team Uno's Machine Problem. This Budget Planner program will use your Monthly Budget and daily, weekly, or monthly expenses in order to calculate a budget plan for you!"<< endl;
 
@@ -49,12 +49,11 @@ cin >> totalBudget;
     
     cout<<"You have "<< dSize<< " daily expenses, and these are:"<< endl;
     }
-<<<<<<< HEAD
+
         for (int i = 0; i<dSize; i++)
-=======
+
 
 for (int i = 0; i<dSize; i++)
->>>>>>> 659b185db3adfa10ecc6d0d707db6fe6e116e734
     {
         cout<< nameDaily[i]<<": "<< amountDaily[i]<< " Pesos"<<endl; 
     }
