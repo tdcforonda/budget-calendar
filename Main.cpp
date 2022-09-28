@@ -10,6 +10,7 @@ string userName, titleDaily, choiceDaily, choiceWeekly, choiceMonthly;
 string* nameDaily = NULL; 
 int* amountDaily = NULL;
 
+
 int main()
 {
 
@@ -22,6 +23,8 @@ cout<<"Good day "<< userName << "! Welcome to Team Uno's Machine Problem. This B
 
 cout<< "\nPlease input Budget for the month." << endl;
 cin >> totalBudget;
+
+
 
 //Daily Expensese
 
@@ -46,7 +49,12 @@ cin >> totalBudget;
     
     cout<<"You have "<< dSize<< " daily expenses, and these are:"<< endl;
     }
+<<<<<<< HEAD
         for (int i = 0; i<dSize; i++)
+=======
+
+for (int i = 0; i<dSize; i++)
+>>>>>>> 659b185db3adfa10ecc6d0d707db6fe6e116e734
     {
         cout<< nameDaily[i]<<": "<< amountDaily[i]<< " Pesos"<<endl; 
     }
