@@ -1,10 +1,11 @@
 #include <iostream>
 #include <string.h>
+#include <stdlib.h>
 using namespace std;
 
 
 //int
-int totalBudget, budgetDaily, dSize, wSize, mSize;
+int totalIncome, budgetDaily, emExpense, dSize, wSize, mSize, totalExpense, dExpense, wExpense, mExpense;
 //Strings
 string userName, titleDaily, choiceDaily, choiceWeekly, choiceMonthly;
 //Arrays
@@ -19,15 +20,19 @@ int main()
 
 //-----------------------------------------------------------------------------input----------------------------------------------------------------------------
 //input -> user details, budget, expense
-cout<<"Before using the program, please enter your name: "<<endl;
+cout<<"Before using the program, please enter your name: ";
 getline(cin, userName);
 
 cout<<"Good day "<< userName << "! Welcome to Team Uno's Machine Problem. This Budget Planner program will use your Monthly Budget and daily, weekly, or monthly expenses in order to calculate a budget plan for you!"<< endl;
 
-cout<< "\nPlease input Budget for the month." << endl;
-cin >> totalBudget;
+cout<< "\nHow much is your income for the month: ";
+cin >> totalIncome;
 
 
+cout<< "\nHow much will you allot for your Emergency Expenses?" <<endl;
+cin>> emExpense;
+
+system("CLS");
 
 //Daily Expensese
 
@@ -35,7 +40,7 @@ cin >> totalBudget;
     cin >> choiceDaily;
     if (choiceDaily == "Y" || choiceDaily == "y")
     {
-        cout<< "\nEnter number of Daily Expenses. ";
+        cout<< "\nEnter number of Daily Expense/s. ";
         cin >> dSize;
         nameDaily = new string[dSize];
         amountDaily = new int[dSize];
@@ -43,9 +48,9 @@ cin >> totalBudget;
 
         for (int i = 0; i<dSize; i++)
         {
-            cout<<"\nWhat is the name of your daily expense "<<i+1 <<endl;
+            cout<<"\nWhat is the name of your daily expense "<<i+1 <<"?"<< endl;
             cin >> nameDaily [i];
-            cout<<"\nHow much is your daily allotment for " << nameDaily[i]<<"?" <<endl;
+            cout<<"\nHow much will you spend daily on " << nameDaily[i]<<"?" <<endl;
             cin >> amountDaily [i];
         }
     }
@@ -55,7 +60,7 @@ cin >> totalBudget;
     cin >> choiceWeekly;
     if (choiceWeekly == "Y" || choiceWeekly == "y")
     {
-        cout<< "\nEnter number of Weekly Expenses. ";
+        cout<< "\nEnter number of Weekly Expense/s. ";
         cin >> wSize;
         nameWeekly = new string[wSize];
         amountWeekly = new int[wSize];
@@ -63,9 +68,9 @@ cin >> totalBudget;
 
         for (int i = 0; i<wSize; i++)
         {
-            cout<<"\nWhat is the name of your weekly expense "<<i+1 <<endl;
+            cout<<"\nWhat is the name of your weekly expense "<<i+1 <<"?"<< endl;
             cin >> nameWeekly [i];
-            cout<<"\nHow much is your weekly allotment for " << nameWeekly[i]<<"?" <<endl;
+            cout<<"\nHow much will you spend weekly on " << nameWeekly[i]<<"?" <<endl;
             cin >> amountWeekly [i];
         }
     }
@@ -76,7 +81,7 @@ cin >> totalBudget;
     cin >> choiceMonthly;
     if (choiceMonthly == "Y" || choiceMonthly == "y")
     {
-        cout<< "\nEnter number of Monthly Expenses. ";
+        cout<< "\nEnter number of Monthly Expense/s. ";
         cin >> mSize;
         nameMonthly = new string[mSize];
         amountMonthly = new int[mSize];
@@ -84,12 +89,14 @@ cin >> totalBudget;
 
         for (int i = 0; i<mSize; i++)
         {
-            cout<<"\nWhat is the name of your monthly expense "<<i+1 <<endl;
+            cout<<"\nWhat is the name of your monthly expense "<<i+1 <<"?"<< endl;
             cin >> nameMonthly [i];
-            cout<<"\nHow much is your monthly allotment for " << nameMonthly[i]<<"?" <<endl;
+            cout<<"\nHow much will you spend monthly on " << nameMonthly[i]<<"?" <<endl;
             cin >> amountMonthly [i];
         }
     }
+
+system("CLS");
 
 //Output Test
     //Daily
@@ -118,7 +125,29 @@ cin >> totalBudget;
 //--------------------------------------------------------------------------Processing--------------------------------------------------------------------------
 //Processing -> Budget>Expense, create stacks
 
+//Calculating Total Expense
+//Daily Expense
+for (int i = 0; i<dSize; i++)
+{
+    dExpense = dExpense + amountDaily[i];
+}
+dExpense = dExpense*30;
 
+//Weekly
+for (int i = 0; i<wSize; i++)
+{
+    wExpense = wExpense + amountWeekly[i];
+}
+wExpense = wExpense*4;
+
+//Monthly
+for (int i = 0; i<mSize; i++)
+{
+    mExpense = mExpense + amountMonthly[i];
+}
+
+totalExpense = dExpense + wExpense + mExpense + emExpense;
+cout<<"\nTotal Expense for the month is "<<totalExpense <<" Pesos" <<endl;
 
 //----------------------------------------------------------------------------output----------------------------------------------------------------------------
 //Output -> output stacks 
