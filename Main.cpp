@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string.h>
 #include <stdlib.h>
+#include "linkedQueue.h"
+#include "linkedStack.h"
 using namespace std;
 
 
@@ -32,7 +34,7 @@ cin >> totalIncome;
 cout<< "\nHow much will you allot for your Emergency Expenses?" <<endl;
 cin>> emExpense;
 
-system("CLS");
+//system("CLS");
 
 //Daily Expensese
 
@@ -96,10 +98,11 @@ system("CLS");
         }
     }
 
-system("CLS");
+//system("CLS");
 
 //Output Test
     //Daily
+    cout<< endl << endl;
     cout<<"You have "<< dSize<< " daily expense/s, and these are:"<< endl;
     for (int i = 0; i<dSize; i++)
     {
@@ -149,8 +152,102 @@ for (int i = 0; i<mSize; i++)
 totalExpense = dExpense + wExpense + mExpense + emExpense;
 cout<<"\nTotal Expense for the month is "<<totalExpense <<" Pesos" <<endl;
 
-//----------------------------------------------------------------------------output----------------------------------------------------------------------------
-//Output -> output stacks 
+if (totalExpense > totalIncome)
+{
+    cout << "\n\nTotal Expense is greater than Total Income, program will restart now";
+    return 0;
+}
+
+//Adding to storage for output - using queue
+
+linkedQueueType<int> dailyQueue;
+dailyQueue.initializeQueue();
+
+linkedQueueType<int> weeklyQueue;
+weeklyQueue.initializeQueue();
+
+linkedQueueType<int> monthlyQueue;
+monthlyQueue.initializeQueue();
+
+//Add dExpense to queue
+dExpense = dExpense/30;
+for (int i = 0; i < 30; i++)
+{
+dailyQueue.addQueue(dExpense);
+}
+
+//Add wExpenses to queue
+wExpense = wExpense/4;
+for (int i = 0; i < 4; i++)
+{
+weeklyQueue.addQueue(wExpense);
+}
+
+//add mExpense to queue
+ monthlyQueue.addQueue(mExpense);
+
+//output
+
+
+//7
+for (int i = 0; i < 7; i++) 
+{
+    cout<<" | "<< dailyQueue.front();
+    dailyQueue.deleteQueue();
+}
+
+cout<< " || " << weeklyQueue.front() << " | ";
+weeklyQueue.deleteQueue();
+cout<< endl;
+
+
+//14
+for (int i = 0; i < 7; i++) 
+{
+    cout<<" | "<< dailyQueue.front();
+    dailyQueue.deleteQueue();
+}
+
+cout<< " || " << weeklyQueue.front() << " | ";
+weeklyQueue.deleteQueue();
+cout<< endl;
+
+
+//21
+for (int i = 0; i < 7; i++) 
+{
+    cout<<" | "<< dailyQueue.front();
+    dailyQueue.deleteQueue();
+}
+
+cout<< " || " << weeklyQueue.front() << " | ";
+weeklyQueue.deleteQueue();
+cout<< endl;
+
+
+//28
+for (int i = 0; i < 7; i++)
+{
+    cout<<" | "<< dailyQueue.front();
+    dailyQueue.deleteQueue();
+}
+
+cout<< " || " << weeklyQueue.front() << " | ";
+weeklyQueue.deleteQueue();
+cout<< endl;
+
+
+//30
+for (int i = 0; i < 2; i++)
+{
+    cout<<" | "<< dailyQueue.front();
+    dailyQueue.deleteQueue();
+}
+
+cout<< " | ";
+cout<< endl;
+
+cout<< monthlyQueue.front();
 
 
 return 0;
