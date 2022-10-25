@@ -1,15 +1,15 @@
 #include <iostream>
 #include <string.h>
 #include <stdlib.h>
+#include <cstdlib>
 #include "linkedQueue.h"
-#include "linkedStack.h"
 using namespace std;
 
 
 //int
 int totalIncome, budgetDaily, emExpense, dSize, wSize, mSize, totalExpense, dExpense, wExpense, mExpense;
 //Strings
-string userName, titleDaily, choiceDaily, choiceWeekly, choiceMonthly;
+string userName, titleDaily, choiceDaily, choiceWeekly, choiceMonthly, choiceCal, choiceRest;
 //Arrays
 string* nameDaily = NULL; int* amountDaily = NULL;
 string* nameWeekly = NULL; int* amountWeekly = NULL;
@@ -22,7 +22,8 @@ int main()
 
 //-----------------------------------------------------------------------------input----------------------------------------------------------------------------
 //input -> user details, budget, expense
-cout<<"Before using the program, please enter your name: ";
+
+cout<<"\nBefore using the program, please enter your name: ";
 getline(cin, userName);
 
 cout<<"Good day "<< userName << "! Welcome to Team Uno's Machine Problem. This Budget Planner program will use your Monthly Budget and daily, weekly, or monthly expenses in order to calculate a budget plan for you!"<< endl;
@@ -34,7 +35,7 @@ cin >> totalIncome;
 cout<< "\nHow much will you allot for your Emergency Expenses?" <<endl;
 cin>> emExpense;
 
-//system("CLS");
+
 
 //Daily Expensese
 
@@ -98,26 +99,27 @@ cin>> emExpense;
         }
     }
 
-//system("CLS");
 
-//Output Test
+
+
+//Output 
     //Daily
     cout<< endl << endl;
-    cout<<"You have "<< dSize<< " daily expense/s, and these are:"<< endl;
+    cout<<"\nYou have "<< dSize<< " daily expense/s, and these are:"<< endl;
     for (int i = 0; i<dSize; i++)
     {
         cout<< nameDaily[i]<<": "<< amountDaily[i]<< " Pesos"<<endl; 
     }
 
     //Weekly
-    cout<<"You have "<< wSize<< " weekly expense/s, and these are:"<< endl;
+    cout<<"\nYou have "<< wSize<< " weekly expense/s, and these are:"<< endl;
     for (int i = 0; i<wSize; i++)
     {
         cout<< nameWeekly[i]<<": "<< amountWeekly[i]<< " Pesos"<<endl; 
     }
 
      //Monthly
-    cout<<"You have "<< mSize<< " monthly expense/s, and these are:"<< endl;
+    cout<<"\nYou have "<< mSize<< " monthly expense/s, and these are:"<< endl;
     for (int i = 0; i<mSize; i++)
     {
         cout<< nameMonthly[i]<<": "<< amountMonthly[i]<< " Pesos"<<endl; 
@@ -150,13 +152,32 @@ for (int i = 0; i<mSize; i++)
 }
 
 totalExpense = dExpense + wExpense + mExpense + emExpense;
-cout<<"\nTotal Expense for the month is "<<totalExpense <<" Pesos" <<endl;
 
+//Output Total Expense and Emergency Funds
+cout<<"\nTotal Expense for the month is "<<totalExpense <<" Pesos. This includes the Emergency Funds of "<< emExpense <<" Pesos."  <<endl;
+
+
+//Calculate if Total Expense > Total Income
 if (totalExpense > totalIncome)
 {
-    cout << "\n\nTotal Expense is greater than Total Income, program will restart now";
+    cout << "\n\nThe expense you planned exceeds your total income. Please ensure total income is greater than total expense." << endl;
+    cout << "Program will restart now." << endl;
+    system("PAUSE");
     return 0;
 }
+
+cout<<"Congratulations! Your total savings for the month is "<< totalIncome - totalExpense <<" Pesos."<< endl;
+
+//Calendar Question
+
+cout<<"\nDo you want to see the Calendar View of your budget plan? This views shows the total expenses for each day, each week, and the whole month (Y/N) ";
+cin >> choiceCal;
+if (choiceCal == "N" || choiceCal == "n")
+{
+    cout<<"\nThank you for using the Program "<< userName <<". Have a Great day!"<<endl;
+    return 0;
+}
+
 
 //Adding to storage for output - using queue
 
@@ -186,8 +207,12 @@ weeklyQueue.addQueue(wExpense);
 //add mExpense to queue
  monthlyQueue.addQueue(mExpense);
 
+
+
 //output
 
+cout<< "\nCalendar View:"<< endl;
+cout<< " | Mon | Tue | Wed | Thu | Fri | Sat | Sun | " << endl;
 
 //7
 for (int i = 0; i < 7; i++) 
@@ -196,7 +221,7 @@ for (int i = 0; i < 7; i++)
     dailyQueue.deleteQueue();
 }
 
-cout<< " || " << weeklyQueue.front() << " | ";
+cout<< " |  | Weekly Expense 1: " << weeklyQueue.front() << " | ";
 weeklyQueue.deleteQueue();
 cout<< endl;
 
@@ -208,7 +233,7 @@ for (int i = 0; i < 7; i++)
     dailyQueue.deleteQueue();
 }
 
-cout<< " || " << weeklyQueue.front() << " | ";
+cout<< " |  | Weekly Expense 2: " << weeklyQueue.front() << " | ";
 weeklyQueue.deleteQueue();
 cout<< endl;
 
@@ -220,7 +245,7 @@ for (int i = 0; i < 7; i++)
     dailyQueue.deleteQueue();
 }
 
-cout<< " || " << weeklyQueue.front() << " | ";
+cout<< " |  | Weekly Expense 3: " << weeklyQueue.front() << " | ";
 weeklyQueue.deleteQueue();
 cout<< endl;
 
@@ -232,7 +257,7 @@ for (int i = 0; i < 7; i++)
     dailyQueue.deleteQueue();
 }
 
-cout<< " || " << weeklyQueue.front() << " | ";
+cout<< " |  | Weekly Expense 4: " << weeklyQueue.front() << " | ";
 weeklyQueue.deleteQueue();
 cout<< endl;
 
@@ -247,7 +272,8 @@ for (int i = 0; i < 2; i++)
 cout<< " | ";
 cout<< endl;
 
-cout<< monthlyQueue.front();
+cout<< "                                              |Monthly Expense is "<< monthlyQueue.front()<< "|" <<endl;
+cout<< "                                              |Total Savings is "<< totalIncome-totalExpense << "|" << endl;
 
 
 return 0;
